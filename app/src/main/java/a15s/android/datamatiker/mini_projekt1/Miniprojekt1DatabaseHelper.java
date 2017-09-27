@@ -17,7 +17,7 @@ public class Miniprojekt1DatabaseHelper extends SQLiteOpenHelper {
     Miniprojekt1DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
-
+    //hello
     @Override
     public void onCreate(SQLiteDatabase db) {
 
