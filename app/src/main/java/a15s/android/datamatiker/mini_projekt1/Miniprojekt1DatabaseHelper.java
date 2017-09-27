@@ -56,7 +56,7 @@ public class Miniprojekt1DatabaseHelper extends SQLiteOpenHelper {
             wareValues.put("STORE_ID", element.getStoreId());
             db.insert("WARE", null, wareValues);
         }
-
+        // Git Test Hello!
         db.execSQL(
                 "CREATE TABLE SHOPPINGLIST ("
                 +"_id INTEGER PRIMARY KEY AUTOINCREMENT, "
