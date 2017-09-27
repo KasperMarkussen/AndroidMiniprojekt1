@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Mini-projekt1</string>
+    <string name="add_button">ADD</string>
+    <string name="accept">Accept</string>
+    <string name="new_list_name">New list name...</string>
+    <string name="new_list_item">Add Item</string>
+    <string name="delete_shopping_list">Delete List</string>
+    <string name="bought">Bought</string>
+    <string name="mark_bought">Mark Bought</string>
+    <string name="delete_shopping_item">Delete Item</string>
+
+    <string name="name">Name:</string>
+    <string name="amount">Amount:</string>
+    <string name="price">Price:</string>
+    <string name="discount_expire">Expires:</string>
+    <string name="store_name">Store:</string>
+    <string name="normal_price">Normal Price:</string>
+    <string name="currency_signature">kr</string>
+</resources>
