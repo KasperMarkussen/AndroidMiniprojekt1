@@ -42,3 +42,11 @@ app/.idea/modules.xml
 app/.idea/misc.xml
 app/.idea/copyright/profiles_settings.xml
 app/.idea/compiler.xml
+local.properties.txt
+app/.idea/runConfigurations.xml
+app/.idea/gradle.xml
+app/gradle/wrapper/gradle-wrapper.properties
+app/gradle/wrapper/gradle-wrapper.jar
+app/gradlew.bat
+app/gradlew
+app/local.properties
