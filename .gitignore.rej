@@ -1,0 +1,15 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -50,3 +50,13 @@
+ app/gradlew.bat
+ app/gradlew
+ app/local.properties
++=======
++app/local.properties
++app/gradlew.bat
++app/gradlew
++app/gradle/wrapper/gradle-wrapper.properties
++app/gradle/wrapper/gradle-wrapper.jar
++app/.idea/runConfigurations.xml
++app/.idea/gradle.xml
++local.properties.txt
++>>>>>>> Develop_stationær
