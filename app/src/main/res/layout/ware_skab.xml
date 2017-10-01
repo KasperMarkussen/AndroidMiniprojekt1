@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtWareName"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_weight="0.19"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/txtWareUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:text="unit"
+        android:layout_weight="0.08" />
+
+    <TextView
+        android:id="@+id/txtWarePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:text="@string/price"
+        android:layout_weight="0.06" />
+
+    <TextView
+        android:id="@+id/txtWareDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:text="discount"
+        android:layout_weight="0.04" />
+</LinearLayout>

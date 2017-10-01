@@ -5,23 +5,23 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ShoppingListDetail extends AppCompatActivity {
 
     public static final String EXTRA_LISTNO = "mini_projekt1_shopping_list_no";
+    private long list_id;
+
+
 
     private ArrayList<ShoppingItem> shoppingList = new ArrayList<ShoppingItem>();
     private ArrayAdapter<ShoppingItem> adapter;
@@ -31,6 +31,9 @@ public class ShoppingListDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_detail);
 
+        if(getIntent().hasExtra("listID")) {
+            list_id = (Long) getIntent().getExtras().get("listID");
+        }
         updateList();
 
         adapter = new ArrayAdapter<ShoppingItem>(this,
@@ -48,6 +51,17 @@ public class ShoppingListDetail extends AppCompatActivity {
             }
         };
         listView.setOnItemClickListener(itemClickListener);
+
+
+        Button add = (Button)findViewById(R.id.addItemBtn);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent showStores = new Intent(getApplicationContext(), StoreList.class);
+                showStores.putExtra("ListID", list_id);
+                startActivity(showStores);
+            }
+        });
     }
 
     private void updateList() {
@@ -114,4 +128,11 @@ public class ShoppingListDetail extends AppCompatActivity {
             if(db!=null) db.close();
         }
     }
+
+
+
+
+
+
+
 }
