@@ -100,4 +100,6 @@ public class Miniprojekt1DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 
     }
+
+
 }
