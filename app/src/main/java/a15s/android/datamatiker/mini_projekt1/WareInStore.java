@@ -17,10 +17,15 @@ import java.util.ArrayList;
 
 public class WareInStore extends AppCompatActivity {
 
+/*
+=======
+
     public static final String EXTRA_ITEMID = "mini_projekt1_ware_in_store_id";
 
+>>>>>>> d6b3101872724deb1c7ee259450b036e8059edb0
     private ArrayList<Ware> wareList = new ArrayList<Ware>();
     private ArrayAdapter<Ware> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         updateList();
@@ -45,6 +50,7 @@ public class WareInStore extends AppCompatActivity {
 
 
     }
+
     private void updateList() {
         Intent intent = getIntent();
         int listID = intent.getIntExtra(EXTRA_ITEMID, 0);
@@ -55,19 +61,19 @@ public class WareInStore extends AppCompatActivity {
 
         try {
             cursor = db.query("WARE",
-                    new String[]{"_id", "NAME","UNIT","NORMAL_PRICE", "DISCOUNT_PRICE","DISCOUNT_END_DATE","STORE_ID"
-                            },
+                    new String[]{"_id", "NAME", "UNIT", "NORMAL_PRICE", "DISCOUNT_PRICE", "DISCOUNT_END_DATE", "STORE_ID"
+                    },
                     "LIST_ID = ?",
                     new String[]{Integer.toString(listID)},
                     null, null, null);
-        }
-        catch (SQLiteException e) {
+        } catch (SQLiteException e) {
             Toast toast = Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT);
             toast.show();
+        } finally {
+            if (cursor != null) cursor.close();
+            if (db != null) db.close();
         }
-        finally {
-            if(cursor!=null) cursor.close();
-            if(db!=null) db.close();
-        }
+
     }
+*/
 }
