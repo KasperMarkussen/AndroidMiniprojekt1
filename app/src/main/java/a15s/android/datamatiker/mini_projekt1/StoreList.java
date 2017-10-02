@@ -33,12 +33,10 @@ public class StoreList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list);
 
-        storage = new Storage(this);
-
         list_id = getIntent().getIntExtra(ShoppingListDetail.EXTRA_LISTNO, -1);
 
         ListView lView = (ListView) findViewById(R.id.storeListView);
-        final SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getStores(), new String[] {"NAME"}, new int[]{android.R.id.text1});
+        final SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, Storage.getStores(this), new String[] {"NAME"}, new int[]{android.R.id.text1});
 
         lView.setAdapter(adapter);
 

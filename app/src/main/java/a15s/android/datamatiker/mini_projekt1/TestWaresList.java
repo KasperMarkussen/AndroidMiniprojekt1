@@ -1,5 +1,6 @@
 package a15s.android.datamatiker.mini_projekt1;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -29,8 +30,6 @@ public class TestWaresList extends AppCompatActivity {
         list_id = getIntent().getIntExtra(ShoppingListDetail.EXTRA_LISTNO, -1);
         store_id = getIntent().getIntExtra(TestWaresList.EXTRA_STORE_ID, -1);
 
-        storage = new Storage(this);
-
         init();
 
 
@@ -40,19 +39,19 @@ public class TestWaresList extends AppCompatActivity {
     private void init(){
         ListView wareList = (ListView)findViewById(R.id.lwWares);
 
-        Cursor cursor = storage.getWaresByStoreID((int) store_id);
+        Cursor cursor = Storage.getWaresByStoreID(this, (int) store_id);
         WareAdapter wareAdapter = new WareAdapter(this, cursor, 0);
         wareList.setAdapter(wareAdapter);
 
         wareList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long itemID) {
-                amountPopUp((int)itemID);
+                amountPopUp(parent.getContext(), (int)itemID);
             }
         });
 
     }
-    private void amountPopUp(final int itemID){
+    private void amountPopUp(final Context context, final int itemID){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle("Input amount");
         final EditText input = new EditText(this);
@@ -62,7 +61,7 @@ public class TestWaresList extends AppCompatActivity {
                 try {
                     amount = Integer.parseInt(input.getText().toString());
                     if(amount > 0){
-                        storage.addItemToList((int) list_id, amount, itemID, store_id);
+                        storage.addItemToList(context, (int) list_id, amount, itemID, store_id);
                         finish();
                     }
                 } catch (IllegalFormatException e){

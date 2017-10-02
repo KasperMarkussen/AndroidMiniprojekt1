@@ -10,27 +10,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class TopLevelActivity extends AppCompatActivity {
 
-    private ArrayList<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
-    private ArrayAdapter<ShoppingList> adapter;
+    private TopLevelListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_level);
 
-        updateList();
-        
-        adapter=new ArrayAdapter<ShoppingList>(this,
-                android.R.layout.simple_list_item_1,
-                shoppingLists);
+        adapter = new TopLevelListAdapter(this, Storage.getShoppingLists(this), 0);
+
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
@@ -38,7 +36,7 @@ public class TopLevelActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TopLevelActivity.this, ShoppingListDetail.class);
-                intent.putExtra(ShoppingListDetail.EXTRA_LISTNO, adapter.getItem(position).getId());
+                intent.putExtra(ShoppingListDetail.EXTRA_LISTNO, (int) id);
                 startActivity(intent);
             }
         };
@@ -48,8 +46,8 @@ public class TopLevelActivity extends AppCompatActivity {
     public void onClickAddButton(View view) {
         EditText editText = (EditText) findViewById(R.id.editText);
         if(editText.getText().length() > 0) {
-            ShoppingList newEntry = new ShoppingList(editText.getText().toString());
-            shoppingLists.add(newEntry);
+            Storage.addNewList(this, editText.getText().toString());
+            editText.setText("");
             adapter.notifyDataSetChanged();
         }
     }
@@ -67,7 +65,7 @@ public class TopLevelActivity extends AppCompatActivity {
 
             while(cursor.moveToNext()) list.add(new ShoppingList(cursor.getString(1), cursor.getInt(0)));
 
-            shoppingLists = list;
+            //shoppingLists = list;
         }
         catch (SQLiteException e) {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);

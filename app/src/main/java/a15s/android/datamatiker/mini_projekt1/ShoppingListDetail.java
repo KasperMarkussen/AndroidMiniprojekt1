@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +63,14 @@ public class ShoppingListDetail extends AppCompatActivity {
                 Intent showStores = new Intent(getApplicationContext(), StoreList.class);
                 showStores.putExtra(ShoppingListDetail.EXTRA_LISTNO, list_id);
                 startActivity(showStores);
+            }
+        });
+
+        Button delete = (Button)findViewById(R.id.delListBtn);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Storage.removeList(getBaseContext(), list_id);
             }
         });
     }
