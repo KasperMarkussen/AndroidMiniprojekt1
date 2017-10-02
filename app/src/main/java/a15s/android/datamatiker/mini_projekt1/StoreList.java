@@ -1,21 +1,12 @@
 package a15s.android.datamatiker.mini_projekt1;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -43,9 +34,9 @@ public class StoreList extends AppCompatActivity {
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getBaseContext(), TestWaresList.class);
+                Intent intent = new Intent(getBaseContext(), WaresList.class);
                 intent.putExtra(ShoppingListDetail.EXTRA_LISTNO, list_id);
-                intent.putExtra(TestWaresList.EXTRA_STORE_ID, (int) id );
+                intent.putExtra(WaresList.EXTRA_STORE_ID, (int) id );
                 startActivity(intent);
             }
         });

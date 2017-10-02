@@ -18,13 +18,8 @@
         </activity>
         <activity android:name=".ShoppingListDetail" />
         <activity android:name=".ShoppingItemDetail" />
-
-
         <activity android:name=".StoreList" />
-        <activity android:name=".WareInStore"></activity>
-        <activity android:name=".StoreList" />
-        <activity android:name=".TestWaresList" />
-        <activity android:name=".WareInStore" />
+        <activity android:name=".WaresList" />
 
     </application>
 

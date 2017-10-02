@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.IllegalFormatException;
 
-public class TestWaresList extends AppCompatActivity {
+public class WaresList extends AppCompatActivity {
     public static final String EXTRA_STORE_ID = "mini_projekt1_store_id";
     private int list_id;
     private int store_id;
@@ -28,7 +28,7 @@ public class TestWaresList extends AppCompatActivity {
         setContentView(R.layout.activity_wares_list);
 
         list_id = getIntent().getIntExtra(ShoppingListDetail.EXTRA_LISTNO, -1);
-        store_id = getIntent().getIntExtra(TestWaresList.EXTRA_STORE_ID, -1);
+        store_id = getIntent().getIntExtra(WaresList.EXTRA_STORE_ID, -1);
 
         init();
 
