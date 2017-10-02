@@ -47,7 +47,7 @@ public class StoreList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getBaseContext(), TestWaresList.class);
                 intent.putExtra(ShoppingListDetail.EXTRA_LISTNO, list_id);
-                intent.putExtra(TestWaresList.EXTRA_STORE_ID, (int) id - 1);
+                intent.putExtra(TestWaresList.EXTRA_STORE_ID, (int) id );
                 startActivity(intent);
             }
         });

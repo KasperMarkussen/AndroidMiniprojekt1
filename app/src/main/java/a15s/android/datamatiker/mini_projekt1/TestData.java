@@ -23,11 +23,11 @@ public class TestData {
 
     public Store[] TEST_STORES = new Store[]
             {
-                    new Store(0,"store a", "this is store a description"),
-                    new Store(1,"store b", "this is store b description"),
-                    new Store(2,"store c", "this is store c description"),
-                    new Store(3,"store d", "this is store d description"),
-                    new Store(4,"store e", "this is store e description")
+                    new Store(1,"store a", "this is store a description"),
+                    new Store(2,"store b", "this is store b description"),
+                    new Store(3,"store c", "this is store c description"),
+                    new Store(4,"store d", "this is store d description"),
+                    new Store(5,"store e", "this is store e description")
             };
 
 
@@ -47,17 +47,17 @@ public class TestData {
             };
     public ShoppingItem[] TEST_ITEMS = new ShoppingItem[]
             {
-                    new ShoppingItem(1, TEST_WARES[0], 1, 1, TEST_STORES[TEST_WARES[0].getStoreId()].getName()),
-                    new ShoppingItem(2, TEST_WARES[1], 4, 1, TEST_STORES[TEST_WARES[1].getStoreId()].getName()),
-                    new ShoppingItem(3, TEST_WARES[1], 2, 2, TEST_STORES[TEST_WARES[1].getStoreId()].getName()),
-                    new ShoppingItem(4, TEST_WARES[2], 3, 3, TEST_STORES[TEST_WARES[2].getStoreId()].getName()),
-                    new ShoppingItem(5, TEST_WARES[0], 5, 3, TEST_STORES[TEST_WARES[0].getStoreId()].getName()),
-                    new ShoppingItem(6, TEST_WARES[5], 1, 4, TEST_STORES[TEST_WARES[5].getStoreId()].getName()),
-                    new ShoppingItem(7, TEST_WARES[7], 2, 4, TEST_STORES[TEST_WARES[7].getStoreId()].getName()),
-                    new ShoppingItem(8, TEST_WARES[2], 1, 4, TEST_STORES[TEST_WARES[2].getStoreId()].getName()),
-                    new ShoppingItem(9, TEST_WARES[0], 5, 5, TEST_STORES[TEST_WARES[0].getStoreId()].getName()),
-                    new ShoppingItem(10, TEST_WARES[3], 6, 5, TEST_STORES[TEST_WARES[3].getStoreId()].getName()),
-                    new ShoppingItem(11, TEST_WARES[4], 1, 5, TEST_STORES[TEST_WARES[4].getStoreId()].getName()),
-                    new ShoppingItem(12, TEST_WARES[8], 1, 5, TEST_STORES[TEST_WARES[8].getStoreId()].getName())
+                    new ShoppingItem(1, TEST_WARES[0], 1, 1, TEST_STORES[TEST_WARES[0].getStoreId()-1].getName()),
+                    new ShoppingItem(2, TEST_WARES[1], 4, 1, TEST_STORES[TEST_WARES[1].getStoreId()-1].getName()),
+                    new ShoppingItem(3, TEST_WARES[1], 2, 2, TEST_STORES[TEST_WARES[1].getStoreId()-1].getName()),
+                    new ShoppingItem(4, TEST_WARES[2], 3, 3, TEST_STORES[TEST_WARES[2].getStoreId()-1].getName()),
+                    new ShoppingItem(5, TEST_WARES[0], 5, 3, TEST_STORES[TEST_WARES[0].getStoreId()-1].getName()),
+                    new ShoppingItem(6, TEST_WARES[5], 1, 4, TEST_STORES[TEST_WARES[5].getStoreId()-1].getName()),
+                    new ShoppingItem(7, TEST_WARES[7], 2, 4, TEST_STORES[TEST_WARES[7].getStoreId()-1].getName()),
+                    new ShoppingItem(8, TEST_WARES[2], 1, 4, TEST_STORES[TEST_WARES[2].getStoreId()-1].getName()),
+                    new ShoppingItem(9, TEST_WARES[0], 5, 5, TEST_STORES[TEST_WARES[0].getStoreId()-1].getName()),
+                    new ShoppingItem(10, TEST_WARES[3], 6, 5, TEST_STORES[TEST_WARES[3].getStoreId()-1].getName()),
+                    new ShoppingItem(11, TEST_WARES[4], 1, 5, TEST_STORES[TEST_WARES[4].getStoreId()-1].getName()),
+                    new ShoppingItem(12, TEST_WARES[8], 1, 5, TEST_STORES[TEST_WARES[8].getStoreId()-1].getName())
             };
 }
