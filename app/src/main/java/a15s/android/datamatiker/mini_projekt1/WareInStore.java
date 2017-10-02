@@ -16,7 +16,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class WareInStore extends AppCompatActivity {
+
 /*
+=======
+
+    public static final String EXTRA_ITEMID = "mini_projekt1_ware_in_store_id";
+
+>>>>>>> d6b3101872724deb1c7ee259450b036e8059edb0
     private ArrayList<Ware> wareList = new ArrayList<Ware>();
     private ArrayAdapter<Ware> adapter;
 
@@ -24,9 +30,9 @@ public class WareInStore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         updateList();
 
-        adapter = new ArrayAdapter<ShoppingItem>(this,
+        adapter = new ArrayAdapter<Ware>(this,
                 android.R.layout.simple_list_item_1,
-                shoppingList);
+                wareList);
         ListView listView = (ListView) findViewById(R.id.shoppingListView);
         listView.setAdapter(adapter);
 
@@ -47,7 +53,7 @@ public class WareInStore extends AppCompatActivity {
 
     private void updateList() {
         Intent intent = getIntent();
-        int listID = intent.getIntExtra(EXTRA_LISTNO, 0);
+        int listID = intent.getIntExtra(EXTRA_ITEMID, 0);
 
         SQLiteOpenHelper dbhelper = new Miniprojekt1DatabaseHelper(getApplicationContext());
         SQLiteDatabase db = dbhelper.getReadableDatabase();
