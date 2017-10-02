@@ -1,5 +1,6 @@
 package a15s.android.datamatiker.mini_projekt1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,8 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -18,11 +21,11 @@ import java.util.ArrayList;
 
 
 public class StoreList extends AppCompatActivity {
-    public static final String EXTRA_LISTNO = "mini_projekt1_shopping_list_no";
+
     private Storage storage;
     private ArrayList<Store> stores = new ArrayList<Store>();
-    private ArrayAdapter<Store> adapter;
-    private long list_id;
+    //private ArrayAdapter<Store> adapter;
+    private int list_id;
 
 
     @Override
@@ -32,22 +35,19 @@ public class StoreList extends AppCompatActivity {
 
         storage = new Storage(this);
 
-        if(getIntent().hasExtra("listID")) {
-            list_id = (int) getIntent().getExtras().get("listID");
-        }
-
-        updateList();
+        list_id = getIntent().getIntExtra(ShoppingListDetail.EXTRA_LISTNO, -1);
 
         ListView lView = (ListView) findViewById(R.id.storeListView);
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getStores(), new String[] {"NAME"}, new int[]{android.R.id.text1});
+        final SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, storage.getStores(), new String[] {"NAME"}, new int[]{android.R.id.text1});
+
         lView.setAdapter(adapter);
 
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getBaseContext(), TestWaresList.class);
-                intent.putExtra("listID", list_id);
-                intent.putExtra("storeID", id);
+                intent.putExtra(ShoppingListDetail.EXTRA_LISTNO, list_id);
+                intent.putExtra(TestWaresList.EXTRA_STORE_ID, (int) id - 1);
                 startActivity(intent);
             }
         });
@@ -73,32 +73,6 @@ public class StoreList extends AppCompatActivity {
 
     private void update(){
 
-
-    }
-
-    private void updateList() {
-        Cursor cursor = null;
-        SQLiteOpenHelper dbhelper = new Miniprojekt1DatabaseHelper(this);
-        SQLiteDatabase db = dbhelper.getReadableDatabase();
-
-        try {
-            cursor = db.query("STORE",
-                    new String[]{"_id", "NAME", "DESCRIPTION"},
-                    null, null, null, null, null);
-            ArrayList<Store> list = new ArrayList<>();
-
-            while(cursor.moveToNext()) list.add(new Store( cursor.getInt(0), cursor.getString(1), cursor.getString(2)));
-
-            stores = list;
-        }
-        catch (SQLiteException e) {
-            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        finally {
-            if(cursor!=null) cursor.close();
-            if(db!=null) db.close();
-        }
 
     }
 }

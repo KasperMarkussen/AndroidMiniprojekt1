@@ -39,7 +39,6 @@ public class TopLevelActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TopLevelActivity.this, ShoppingListDetail.class);
                 intent.putExtra(ShoppingListDetail.EXTRA_LISTNO, adapter.getItem(position).getId());
-                intent.putExtra("listID", id );
                 startActivity(intent);
             }
         };

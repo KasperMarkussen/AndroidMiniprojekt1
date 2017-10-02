@@ -14,8 +14,9 @@ import android.widget.Toast;
 import java.util.IllegalFormatException;
 
 public class TestWaresList extends AppCompatActivity {
-    private long list_id;
-    private long store_id;
+    public static final String EXTRA_STORE_ID = "mini_projekt1_store_id";
+    private int list_id;
+    private int store_id;
     private int amount = -1;
     private Storage storage;
 
@@ -25,12 +26,9 @@ public class TestWaresList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wares_list);
 
-        if(getIntent().hasExtra("listID")) {
-            list_id = (long) getIntent().getExtras().get("listID");
-        }
-        if(getIntent().hasExtra("storeID")) {
-            store_id = (long) getIntent().getExtras().get("storeID");
-        }
+        list_id = getIntent().getIntExtra(ShoppingListDetail.EXTRA_LISTNO, -1);
+        store_id = getIntent().getIntExtra(TestWaresList.EXTRA_STORE_ID, -1);
+
         storage = new Storage(this);
 
         init();
@@ -54,7 +52,7 @@ public class TestWaresList extends AppCompatActivity {
         });
 
     }
-    private void amountPopUp(int itemID){
+    private void amountPopUp(final int itemID){
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle("Input amount");
         final EditText input = new EditText(this);
@@ -64,7 +62,7 @@ public class TestWaresList extends AppCompatActivity {
                 try {
                     amount = Integer.parseInt(input.getText().toString());
                     if(amount > 0){
-                        //storage.addNoteToWare((int) list_id, amount, itemID, store_id);
+                        storage.addItemToList((int) list_id, amount, itemID, store_id);
                         finish();
                     }
                 } catch (IllegalFormatException e){

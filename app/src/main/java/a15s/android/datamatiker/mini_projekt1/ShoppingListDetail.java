@@ -11,15 +11,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ShoppingListDetail extends AppCompatActivity {
 
     public static final String EXTRA_LISTNO = "mini_projekt1_shopping_list_no";
-    private long list_id;
+    private int list_id;
 
 
 
@@ -31,9 +36,8 @@ public class ShoppingListDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_detail);
 
-        if(getIntent().hasExtra("listID")) {
-            list_id = (Long) getIntent().getExtras().get("listID");
-        }
+        list_id = getIntent().getIntExtra(ShoppingListDetail.EXTRA_LISTNO, -1);
+
         updateList();
 
         adapter = new ArrayAdapter<ShoppingItem>(this,
@@ -58,10 +62,15 @@ public class ShoppingListDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent showStores = new Intent(getApplicationContext(), StoreList.class);
-                showStores.putExtra("ListID", list_id);
+                showStores.putExtra(ShoppingListDetail.EXTRA_LISTNO, list_id);
                 startActivity(showStores);
             }
         });
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateList();
     }
 
     private void updateList() {
@@ -73,6 +82,7 @@ public class ShoppingListDetail extends AppCompatActivity {
         Cursor cursor = null;
 
         try {
+
             cursor = db.query("SHOPPINGITEM",
                     new String[]{
                             "_id",
@@ -88,7 +98,8 @@ public class ShoppingListDetail extends AppCompatActivity {
                     "LIST_ID = ?",
                     new String[] {Integer.toString(listID)},
                     null, null, null);
-/*
+
+
             ArrayList<ShoppingItem> list = new ArrayList<>();
             while(cursor.moveToNext())
                 list.add(new ShoppingItem(
@@ -117,7 +128,7 @@ public class ShoppingListDetail extends AppCompatActivity {
             DecimalFormat df = new DecimalFormat("0.00");
             df.setRoundingMode(RoundingMode.CEILING);
             totalTextView.setText("Total "+df.format(total)+"kr");
-            savedTextView.setText(df.format(savedTotal)+"kr saved");*/
+            savedTextView.setText(df.format(savedTotal)+"kr saved");
         }
         catch (SQLiteException e) {
             Toast toast = Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT);
