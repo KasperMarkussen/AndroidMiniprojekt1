@@ -92,7 +92,9 @@ public class ShoppingItemDetail extends AppCompatActivity {
             itemText = (TextView) findViewById(R.id.item_detail_storeNameView);
             itemText.setText(item.getStoreName());
 
-            Button btn = (Button) findViewById(R.id.markShoppingItemBoughtBtn);
+
+
+                    Button btn = (Button) findViewById(R.id.markShoppingItemBoughtBtn);
             if(item.isBought()) btn.setText(R.string.bought);
             else btn.setText(R.string.mark_bought);
         }
