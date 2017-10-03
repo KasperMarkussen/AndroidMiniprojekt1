@@ -79,13 +79,13 @@ public class ShoppingItem {
         return storeName;
     }
     public double getDiscountPrice() {
-        return amount * discountPrice;
+        return discountPrice;
     }
     public Date getDiscountEndDate() {
         return discountEndDate;
     }
     public double getNormalPrice() {
-        return amount * normalPrice;
+        return normalPrice;
     }
     public double getPrice() {
         if(isDiscountValid()) return amount * discountPrice;

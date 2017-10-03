@@ -30,6 +30,24 @@ public class Storage {
 
     }
 
+    public static Cursor getItemsByListID(Context context, int listId) {
+        return readQuery(context,
+                "SHOPPINGITEM",
+                new String[]{
+                        "_id",
+                        "WARE_NAME",
+                        "UNIT",
+                        "AMOUNT",
+                        "NORMAL_PRICE",
+                        "DISCOUNT_PRICE",
+                        "DISCOUNT_END_DATE",
+                        "STORE_NAME",
+                        "BOUGHT"},
+                "LIST_ID=?",
+                new String[] {Integer.toString(listId)},
+                null,null,null);
+    }
+
     public static Cursor getWaresByStoreID(Context context, int id){
         return readQuery(context,
                 "WARE",
@@ -88,6 +106,11 @@ public class Storage {
         item.put("BOUGHT", false);
 
         return insertQuery(context, "SHOPPINGITEM", null, item);
+    }
+
+    public static boolean removeItem(Context context, int itemId){
+
+        return removeQuery(context, "SHOPPINGITEM", "_id=?", new String[]{Integer.toString(itemId)});
     }
 
     public static boolean removeList(Context context, int listId) {
