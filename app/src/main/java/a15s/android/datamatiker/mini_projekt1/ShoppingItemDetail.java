@@ -26,10 +26,14 @@ public class ShoppingItemDetail extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_item_detail);
 
 
+
         refreshView();
     }
 
-
+    public void onClickDeleteItemButton(View view) {
+        if(Storage.removeItem(this, item.getId()));
+            this.finish();
+    }
 
     public void onClickMarkButton(View view) {
 
