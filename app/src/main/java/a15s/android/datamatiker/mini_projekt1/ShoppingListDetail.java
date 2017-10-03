@@ -39,21 +39,7 @@ public class ShoppingListDetail extends AppCompatActivity {
 
         updateList();
 
-        adapter = new ArrayAdapter<ShoppingItem>(this,
-                android.R.layout.simple_list_item_1,
-                shoppingList);
-        ListView listView = (ListView) findViewById(R.id.shoppingListView);
-        listView.setAdapter(adapter);
 
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ShoppingListDetail.this, ShoppingItemDetail.class);
-                intent.putExtra(ShoppingItemDetail.EXTRA_ITEMID, adapter.getItem(position).getId());
-                startActivity(intent);
-            }
-        };
-        listView.setOnItemClickListener(itemClickListener);
 
 
         Button add = (Button)findViewById(R.id.addItemBtn);
@@ -70,7 +56,9 @@ public class ShoppingListDetail extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Storage.removeList(getBaseContext(), list_id);
+                if(Storage.removeList(getBaseContext(), list_id))
+                    finish();
+
             }
         });
     }
@@ -123,6 +111,22 @@ public class ShoppingListDetail extends AppCompatActivity {
                         ));
 
             shoppingList = list;
+
+            adapter = new ArrayAdapter<ShoppingItem>(this,
+                    android.R.layout.simple_list_item_1,
+                    shoppingList);
+            ListView listView = (ListView) findViewById(R.id.shoppingListView);
+            listView.setAdapter(adapter);
+
+            AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(ShoppingListDetail.this, ShoppingItemDetail.class);
+                    intent.putExtra(ShoppingItemDetail.EXTRA_ITEMID, adapter.getItem(position).getId());
+                    startActivity(intent);
+                }
+            };
+            listView.setOnItemClickListener(itemClickListener);
 
             double total = 0;
             double savedTotal = 0;

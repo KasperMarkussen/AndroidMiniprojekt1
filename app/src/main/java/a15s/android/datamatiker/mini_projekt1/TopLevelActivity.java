@@ -27,6 +27,25 @@ public class TopLevelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_level);
 
+        updateList();
+    }
+
+    public void onClickAddButton(View view) {
+        EditText editText = (EditText) findViewById(R.id.editText);
+        if(editText.getText().length() > 0) {
+            Storage.addNewList(this, editText.getText().toString());
+            editText.setText("");
+            updateList();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateList();
+    }
+
+    private void updateList() {
         adapter = new TopLevelListAdapter(this, Storage.getShoppingLists(this), 0);
 
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -41,40 +60,5 @@ public class TopLevelActivity extends AppCompatActivity {
             }
         };
         listView.setOnItemClickListener(itemClickListener);
-    }
-
-    public void onClickAddButton(View view) {
-        EditText editText = (EditText) findViewById(R.id.editText);
-        if(editText.getText().length() > 0) {
-            Storage.addNewList(this, editText.getText().toString());
-            editText.setText("");
-            adapter.notifyDataSetChanged();
-        }
-    }
-
-    private void updateList() {
-        Cursor cursor = null;
-        SQLiteOpenHelper dbhelper = new Miniprojekt1DatabaseHelper(this);
-        SQLiteDatabase db = dbhelper.getReadableDatabase();
-
-        try {
-            cursor = db.query("SHOPPINGLIST",
-                                    new String[]{"_id", "NAME"},
-                                    null, null, null, null, null);
-            ArrayList<ShoppingList> list = new ArrayList<>();
-
-            while(cursor.moveToNext()) list.add(new ShoppingList(cursor.getString(1), cursor.getInt(0)));
-
-            //shoppingLists = list;
-        }
-        catch (SQLiteException e) {
-            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        finally {
-            if(cursor!=null) cursor.close();
-            if(db!=null) db.close();
-        }
-
     }
 }
