@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ShoppingItemDetail extends AppCompatActivity {
@@ -81,13 +84,17 @@ public class ShoppingItemDetail extends AppCompatActivity {
                     c.getInt(9)>0
             );
 
+            DecimalFormat df = new DecimalFormat("0.00");
+            df.setRoundingMode(RoundingMode.CEILING);
+            SimpleDateFormat tf = new SimpleDateFormat("dd.MM.yyyy");
+
             TextView itemText = (TextView) findViewById(R.id.item_detail_nameView);
             itemText.setText(item.getWareName());
 
             itemText = (TextView) findViewById(R.id.item_detail_priceView);
             StringBuilder sb = new StringBuilder();
-            sb.append(item.getPrice()).append(getString(R.string.currency_signature));
-            if(item.isDiscountValid()) sb.append('\n').append(getString(R.string.discount_expire)+" "+item.getDiscountEndDate().toString());
+            sb.append(df.format(item.getPrice())).append(getString(R.string.currency_signature));
+            if(item.isDiscountValid()) sb.append('\n').append(getString(R.string.discount_expire)+" "+tf.format(item.getDiscountEndDate()));
             itemText.setText(sb);
 
             itemText = (TextView) findViewById(R.id.item_detail_amountView);

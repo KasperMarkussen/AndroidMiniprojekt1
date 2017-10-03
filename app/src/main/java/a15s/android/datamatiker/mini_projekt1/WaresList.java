@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -55,6 +56,7 @@ public class WaresList extends AppCompatActivity {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setTitle("Input amount");
         final EditText input = new EditText(this);
+        input.setKeyListener(new DigitsKeyListener().getInstance("0123456789"));
         b.setView(input);
         b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
