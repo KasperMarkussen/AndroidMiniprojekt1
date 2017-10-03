@@ -5,29 +5,33 @@
 
     <TextView
         android:id="@+id/txtWareName"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="37dp"
         android:layout_weight="0.19"
-        android:text="@string/name" />
+        android:text="@string/name"
+        android:textAlignment="viewStart" />
 
     <TextView
         android:id="@+id/txtWareUnit"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="37dp"
+        android:layout_weight="0.08"
         android:text="unit"
-        android:layout_weight="0.08" />
+        android:textAlignment="textEnd" />
 
     <TextView
         android:id="@+id/txtWarePrice"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="37dp"
+        android:layout_weight="0.06"
         android:text="@string/price"
-        android:layout_weight="0.06" />
+        android:textAlignment="textEnd" />
 
     <TextView
         android:id="@+id/txtWareDiscount"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="37dp"
+        android:layout_weight="0.04"
         android:text="discount"
-        android:layout_weight="0.04" />
+        android:textAlignment="textEnd" />
 </LinearLayout>
